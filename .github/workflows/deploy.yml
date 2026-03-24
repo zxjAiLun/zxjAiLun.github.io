@@ -42,7 +42,9 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-butterfly-cache
       - name: Install Dependencies
-        run: npm install && cd themes/butterfly && npm install
+        run: npm install
+      - name: Install Butterfly Dependencies
+        run: cd themes/butterfly && npm install
       - name: Build
         run: npm run build
       - name: Upload Pages artifact
