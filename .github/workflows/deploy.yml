@@ -34,8 +34,15 @@ jobs:
           key: ${{ runner.OS }}-npm-cache
           restore-keys: |
             ${{ runner.OS }}-npm-cache
+      - name: Cache Butterfly theme
+        uses: actions/cache@v4
+        with:
+          path: themes/butterfly/node_modules
+          key: ${{ runner.OS }}-butterfly-cache
+          restore-keys: |
+            ${{ runner.OS }}-butterfly-cache
       - name: Install Dependencies
-        run: npm install
+        run: npm install && cd themes/butterfly && npm install
       - name: Build
         run: npm run build
       - name: Upload Pages artifact
